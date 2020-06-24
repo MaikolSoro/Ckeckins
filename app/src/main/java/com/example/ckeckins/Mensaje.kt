@@ -18,6 +18,18 @@ class Mensaje {
                 Errores.HTTP_ERROR->{
                     mensaje = "HUBO UN PROBLEMA EN LA SOLICITUD. INTENTA MÁS TARDE"
                 }
+                Errores.NO_HAY_APP_FSQR->{
+                    mensaje = "No tienes instalada la app de Foursquare"
+                }
+                Errores.ERROR_CONEXION_FSQR->{
+                    mensaje = "No se pudo completar la conexion a Foursquare"
+                }
+                Errores.ERROR_INTERCAMBIO_TOKEN->{
+                    mensaje = "No se pudo completar el intercambio de token en Foursquare"
+                }
+                Errores.ERROR_GUARDAR_TOKEN->{
+                    mensaje = "No se pudo guardar el token"
+                }
             }
             Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show()
         }
