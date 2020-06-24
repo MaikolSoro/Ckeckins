@@ -28,10 +28,10 @@ class Network (var activity: AppCompatActivity) {
             }, Response.ErrorListener {
                     error ->
                 Log.d("HTTP_REQUEST", error.message.toString())
-                Toast.makeText(context, "HUBO UN PROBLEMA EN LA SOLICITUD. INTENTA MÁS TARDE", Toast.LENGTH_LONG).show()
+                Mensaje.mensajeError(context, Errores.HTTP_ERROR)
             })
         } else {
-            Toast.makeText(context, "No se detecta ninguna conexión disponible", Toast.LENGTH_LONG).show()
+           Mensaje.mensajeError(context, Errores.NO_HAY_RED)
         }
     }
 
