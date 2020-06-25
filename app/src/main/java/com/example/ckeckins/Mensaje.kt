@@ -6,8 +6,14 @@ import android.widget.Toast
 class Mensaje {
 
     companion object{
-        fun mensajeError() {
 
+        fun mensaje(context: Context, mensaje: Mensajes) {
+            var str = ""
+            when(mensaje) {
+               Mensajes.RATIONALE->{
+                   str = "Requiero permisos para obtener ubicacion"
+               }
+            }
         }
         fun mensajeError(context: Context, error: Errores){
             var mensaje = ""

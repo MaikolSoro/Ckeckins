@@ -1,7 +1,9 @@
 package com.example.ckeckins
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.ConnectivityManager.NetworkCallback
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +18,6 @@ class Network (var activity: AppCompatActivity) {
         val connectivityManager = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
         return networkInfo != null && networkInfo.isConnected
-
     }
     fun httpRequest(context: Context, url:String, httpResponse: HttpResponse ) {
         if(hayRed()){

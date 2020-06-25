@@ -29,13 +29,13 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
             activity.startActivityForResult(intent, CODIGO_CONEXION)
         }
     }
-    private  fun validarActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        private  fun validarActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
          when(requestCode) {
              CODIGO_CONEXION->{ conexionCompleta( resultCode, data)}
              CODIGO_INTERCAMBIO_TOKEN->{intercambioTokenCompleta(resultCode, data)}
              }
          }
-    private fun conexionCompleta(resultCode: Int, data: Intent?){
+        private fun conexionCompleta(resultCode: Int, data: Intent?){
         val codigoRespuesta = FoursquareOAuth.getAuthCodeFromResult(resultCode, data)
         val exception = codigoRespuesta.exception
 
