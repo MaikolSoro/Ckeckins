@@ -36,6 +36,9 @@ class Mensaje {
                 Errores.ERROR_GUARDAR_TOKEN->{
                     mensaje = "No se pudo guardar el token"
                 }
+                Errores.PERMISO_NEGADO->{
+                    mensaje = "No diste los permisos para obtener tu ubicación"
+                }
             }
             Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show()
         }

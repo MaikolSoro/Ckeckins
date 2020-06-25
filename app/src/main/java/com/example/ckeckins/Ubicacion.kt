@@ -1,5 +1,6 @@
 package com.example.ckeckins
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -56,7 +57,38 @@ class Ubicacion(var activity: AppCompatActivity, ubicacionListener: UbicacionLis
     }
 
     private  fun solicitudPermiso() {
+            ActivityCompat.requestPermissions(activity, arrayOf(permisoFineLocation, permisoCoarseLocation), CODIGO_SOLICITUD_UBICACION)
+    }
+    
+    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray ){
+        when(requestCode) {
+            CODIGO_SOLICITUD_UBICACION -> {
+                if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // tengo el permiso para obtener ubicacion
+                    obtenerUbicacion()
+                } else {
+                    Mensaje.mensajeError(activity.applicationContext, Errores.PERMISO_NEGADO)
+                }
+            }
+        }
+    }
 
+    fun detenerActualizacionUbicacion() {
+        this.fusedLocationClient?.removeLocationUpdates(callback)
+    }
+
+    fun inicializarUbicación(){
+        if( validarPermisosUbicacion()) {
+            obtenerUbicacion()
+        } else {
+            pedirPermisos()
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private  fun obtenerUbicacion() {
+        validarPermisosUbicacion()
+        fusedLocationClient?.requestLocationUpdates(locationRequest, callback, null)
     }
 
 }
