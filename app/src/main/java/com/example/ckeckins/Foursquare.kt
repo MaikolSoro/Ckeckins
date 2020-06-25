@@ -3,6 +3,7 @@ package com.example.ckeckins
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.foursquare.android.nativeoauth.FoursquareOAuth
+import com.google.gson.Gson
 import org.json.HTTP
 
 class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompatActivity) {
@@ -102,7 +103,7 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
         activity.finish()
     }
 
-    fun obtenerVenues(lat:String, lon:String) {
+    fun obtenerVenues(lat:String, lon:String, obtenerVenuesInterface: ObtenerVenuesInterface) {
          val network = Network(activity)
          val seccion = "venues/"
          val metodo  = "search/"
@@ -113,7 +114,24 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
 
         network.httpRequest(activity.applicationContext, url,object: HttpResponse{
             override fun httpResponseSuccess(response: String) {
+                var gson = Gson()
+                var objetoRespuesta = gson.fromJson(response, FoursquareApi::class.java)
+                var meta = objetoRespuesta.meta
+                var venues = objetoRespuesta.response?.venues!!
 
+                if(meta?.code == 200) {
+                    // mandar un mensaje de que se completó el query correctamente
+                    obtenerVenuesInterface.venuesGenerados(venues)
+                } else {
+                    if(meta?.code == 400) {
+                        // problema de coordenadas
+                        Mensaje.mensajeError(activity.applicationContext, meta?.erroresDetail)
+                    } else {
+                        // mostrar un mensaje genérico
+
+                        Mensaje.mensajeError(activity.applicationContext, Errores.ERROR_QUERY)
+                    }
+                }
             }
         })
     }

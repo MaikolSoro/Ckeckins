@@ -39,8 +39,15 @@ class Mensaje {
                 Errores.PERMISO_NEGADO->{
                     mensaje = "No diste los permisos para obtener tu ubicación"
                 }
+                Errores.ERROR_QUERY->{
+                    mensaje = "Hubo un problema en la solicitud de la API"
+                }
             }
             Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show()
+        }
+
+        fun mensajeError(context: Context, error:String){
+            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
         }
     }
 }
