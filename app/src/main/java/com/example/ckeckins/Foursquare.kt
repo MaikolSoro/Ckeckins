@@ -33,7 +33,7 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
             activity.startActivityForResult(intent, CODIGO_CONEXION)
         }
     }
-        private  fun validarActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        public  fun validarActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
          when(requestCode) {
              CODIGO_CONEXION->{ conexionCompleta( resultCode, data)}
              CODIGO_INTERCAMBIO_TOKEN->{intercambioTokenCompleta(resultCode, data)}
@@ -64,6 +64,7 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
             val accesToken = respuestaToken.accessToken
             if(!guardarToken(accesToken)){
                 Mensaje.mensajeError(activity.applicationContext, Errores.ERROR_GUARDAR_TOKEN)
+            } else {
                 navegarSiguienteActividad(activityDestino)
             }
         } else {
