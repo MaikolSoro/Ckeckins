@@ -3,6 +3,7 @@ package com.example.ckeckins
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.foursquare.android.nativeoauth.FoursquareOAuth
+import org.json.HTTP
 
 class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompatActivity) {
 
@@ -15,6 +16,8 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
     private  val SETTINGS = "settings"
     private  val ACCESS_TOKEN = "accessToken"
 
+    private val URL_BASE = "https://api.foursquare.com/v2/"
+    private val VERSION = "v=20200120"
     init {
 
     }
@@ -97,5 +100,21 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
     private fun navegarSiguienteActividad(activity: AppCompatActivity) {
         activity.startActivity(Intent(this.activity,activityDestino:: class.java))
         activity.finish()
+    }
+
+    fun obtenerVenues(lat:String, lon:String) {
+         val network = Network(activity)
+         val seccion = "venues/"
+         val metodo  = "search/"
+         val ll = "ll=" + lat + "," + lon
+         val token = "oauth_token=" + obtenerToken()
+        // url creada para obtener los datos http
+         val url = URL_BASE + seccion + metodo + "?" + ll + "&" + token + " &" + VERSION
+
+        network.httpRequest(activity.applicationContext, url,object: HttpResponse{
+            override fun httpResponseSuccess(response: String) {
+
+            }
+        })
     }
 }

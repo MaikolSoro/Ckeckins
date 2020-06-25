@@ -39,4 +39,5 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.foursquare:foursquare-android-oauth:1.1.0'
     implementation 'com.google.android.gms:play-services:11.4.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
