@@ -53,7 +53,7 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
 
    private fun realizarIntercambioToken(codigo: String){
         val intent = FoursquareOAuth.getTokenExchangeIntent(activity.applicationContext, CLIENT_ID, CLIENT_SECRET, codigo)
-       activity.startActivityForResult(intent, CODIGO_INTERCAMBIO_TOKEN)
+        activity.startActivityForResult(intent, CODIGO_INTERCAMBIO_TOKEN)
 
     }
     private fun intercambioTokenCompleta(resultCode: Int, data: Intent?) {

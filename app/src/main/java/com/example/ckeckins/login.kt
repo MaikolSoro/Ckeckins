@@ -16,7 +16,7 @@ class login : AppCompatActivity() {
         val blogin = findViewById<Button>(R.id.login)
         foursquare = Foursquare(this, PantallaPrincipal())
 
-        if(foursquare?.hayToken()!!){
+        if(foursquare?.hayToken()!!) {
             foursquare?.navegarSiguienteActividad()
         }
         blogin.setOnClickListener{
