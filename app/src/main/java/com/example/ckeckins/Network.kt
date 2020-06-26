@@ -37,6 +37,7 @@ class Network (var activity: AppCompatActivity) {
                 Log.d("HTTP_REQUEST", error.message.toString())
                 Mensaje.mensajeError(context, Errores.HTTP_ERROR)
             })
+            queue.add(solicitud)
         } else {
            Mensaje.mensajeError(context, Errores.NO_HAY_RED)
         }
