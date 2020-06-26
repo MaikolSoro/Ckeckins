@@ -65,14 +65,14 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
             if(!guardarToken(accesToken)){
                 Mensaje.mensajeError(activity.applicationContext, Errores.ERROR_GUARDAR_TOKEN)
             } else {
-                navegarSiguienteActividad(activityDestino)
+                navegarSiguienteActividad()
             }
         } else {
             Mensaje.mensajeError(activity.applicationContext, Errores.ERROR_INTERCAMBIO_TOKEN)
         }
     }
 
-    private fun hayToken():Boolean {
+     fun hayToken():Boolean {
 
         if(obtenerToken() == "") {
             return false
@@ -99,7 +99,7 @@ class Foursquare(var activity: AppCompatActivity, var activityDestino: AppCompat
         return true
     }
 
-    private fun navegarSiguienteActividad(activity: AppCompatActivity) {
+    public fun navegarSiguienteActividad() {
         activity.startActivity(Intent(this.activity,activityDestino:: class.java))
         activity.finish()
     }

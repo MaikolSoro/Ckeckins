@@ -14,9 +14,12 @@ class login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val blogin = findViewById<Button>(R.id.login)
+        foursquare = Foursquare(this, PantallaPrincipal())
 
+        if(foursquare?.hayToken()!!){
+            foursquare?.navegarSiguienteActividad()
+        }
         blogin.setOnClickListener{
-            foursquare = Foursquare(this, PantallaPrincipal())
             foursquare?.iniciarSeccion()
 
         }
